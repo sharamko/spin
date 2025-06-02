@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
-import { CardData, Item } from '@/types';
+import { Item } from '@/types';
 import Image from 'next/image';
 import LastTenSpins from '@/components/LastTenSpins';
 import FrequencyCounter from '@/components/FrequencyCounter';
@@ -41,7 +41,7 @@ const HorizontalRoulette: React.FC<{
   const nextBaseIndexRef = useRef(itemCount * centerCopy + midIndex);
   const measureRef = useRef<HTMLDivElement | null>(null);
 
-  const [historyQueue, setHistoryQueue] = useState<string[]>([]);
+  const [_, setHistoryQueue] = useState<string[]>([]);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [lastTenSpins, setLastTenSpins] = useState<Item[]>([]);
 
