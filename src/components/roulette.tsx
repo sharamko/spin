@@ -41,7 +41,7 @@ const HorizontalRoulette: React.FC<{
   const nextBaseIndexRef = useRef(itemCount * centerCopy + midIndex);
   const measureRef = useRef<HTMLDivElement | null>(null);
 
-  const [_, setHistoryQueue] = useState<string[]>([]);
+  const [historyQueue, setHistoryQueue] = useState<string[]>([]);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [lastTenSpins, setLastTenSpins] = useState<Item[]>([]);
 
@@ -108,8 +108,8 @@ const HorizontalRoulette: React.FC<{
 
   const processWinner = () => {
     const winner = items[nextBaseIndexRef.current];
-    setHistoryQueue((prev) => {
-      const updated = [winner.id, ...prev].slice(0, 100);
+    setHistoryQueue(() => {
+      const updated = [winner.id, ...historyQueue].slice(0, 100);
       const newCounts = updated.reduce<Record<string, number>>((acc, id) => {
         acc[id] = (acc[id] || 0) + 1;
         return acc;
